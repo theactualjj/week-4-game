@@ -60,7 +60,7 @@ var lossCount = 0;
  	var currentScore = 0;
 
  	// Set target score between 19 -120
- 	targetScore = getRandom(19,120);
+ 	targetScore = getRandom(15, 150);
 
  	stockBroker.donnie.value = getRandom(1, 12);
  	stockBroker.jordan.value = getRandom(1, 12);
@@ -71,33 +71,75 @@ var lossCount = 0;
 
 
 // Testing
-console.log("----------------------------");
+
 console.log("Target Score:" + targetScore);
 console.log("Donnie: " + stockBroker.donnie.value + " | Jordan: " + 
 	stockBroker.jordan.value + " | Margot: " + stockBroker.margot.value + " | Mark: " +
 	stockBroker.mark.value);
-console.log("----------------------------");
-console.log("----------------------------");
-//Change HTML
 
+//Change HTML
+	$("#yourScore").html(currentScore);
+	$("#targetScore").html(targetScore);
+
+
+// Respond to clicks on brokers
+	var addValues = function(stockBroker) {
+
+		// Change current score
+		currentScore = currentScore + stockBroker.value;
+
+		//change HTML to change current score
+		$("#yourScore").html = (currentScore);
+	}
+
+// Testing Console
+	console.log("Your Score:" + currentScore);
+
+	// Check if won or lost and reset game
+	var checkWin = function() {
+		// check if current score is greater than target score
+		if (currentScore > targetScore) {
+			alert("Margin Call!!! You are broke!");
+			console.log("Loser");
+
+			// Add to Loss counter
+			lossCount++;
+
+			// Change Loss Count HTML
+			$("#lossCount").html(lossCount);
+
+		}
+
+		else if (currentScore == targetScore) {
+			alert("MONAYYY!! You are the WOLF OF WALL STREET!!");
+			console.log("You Won!");
+
+			// Add to win counter
+			winCount++;
+
+			// Change Win Count HTML
+			$("#winCount").html(winCount);
+		}
+
+	}
 
 // Main Process
 // --------------------------------------------
 startGame();
 
 $("#donnie").click(function() {
-	alert("test");
+	addValues(stockBroker.donnie);
 });
 
 $("#jordan").click(function() {
-	alert("test");
+	addValues(stockBroker.jordan);
 });
 
 $("#margot").click(function() {
-	alert("test");
+	addValues(stockBroker.margot);
 });
 
 $("#mark").click(function() {
-	alert("test");
+	addValues(stockBroker.mark);
 });
 
