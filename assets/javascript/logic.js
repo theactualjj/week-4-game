@@ -1,11 +1,11 @@
 // Global Variables
 // --------------------------------------------
-// Need to track value of crystals each round
+// Need to track value of brokers each round
 // Need to crack current and target score 
 // Need to track Win & Loss Count
 
-// Crystal Variables
-var crystal = {
+// Stockbroker Variables
+var stockBroker = {
 	donnie:
 	{
 		name: "donnie",
@@ -47,9 +47,44 @@ var lossCount = 0;
 // Functions
 // --------------------------------------------
 
+	//Get random numbers
+ var getRandom = function(min,max) {
+ 	return Math.floor(Math.random() * (max - min + 1)) + min;
+ }
+
+
+ // Start game and reset values
+ var startGame = function(){
+
+ 	//Reset current score
+ 	var currentScore = 0;
+
+ 	// Set target score between 19 -120
+ 	targetScore = getRandom(19,120);
+
+ 	stockBroker.donnie.value = getRandom(1, 12);
+ 	stockBroker.jordan.value = getRandom(1, 12);
+ 	stockBroker.margot.value = getRandom(1, 12);
+ 	stockBroker.mark.value = getRandom(1, 12);
+
+}
+
+
+// Testing
+console.log("----------------------------");
+console.log("Target Score:" + targetScore);
+console.log("Donnie: " + stockBroker.donnie.value + " | Jordan: " + 
+	stockBroker.jordan.value + " | Margot: " + stockBroker.margot.value + " | Mark: " +
+	stockBroker.mark.value);
+console.log("----------------------------");
+console.log("----------------------------");
+//Change HTML
+
 
 // Main Process
 // --------------------------------------------
+startGame();
+
 $("#donnie").click(function() {
 	alert("test");
 });
